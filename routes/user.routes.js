@@ -7,10 +7,10 @@ const userRouter = Router();
 
 //register
 userRouter.post("/register", async (req, res) => {
-  const { email, password, location, age } = req.body;
+  const { email, password } = req.body;
   try {
     bcrypt.hash(password, 5, async (err, hash) => {
-      const user = new UserModel({ email, password: hash, location, age });
+      const user = new UserModel({ email, password: hash});
       await user.save();
       
       res.status(200).send({ message: "User Registered" });
